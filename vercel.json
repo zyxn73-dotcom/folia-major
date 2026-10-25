@@ -1,6 +1,26 @@
 {
-  "ignoreCommand": "git rev-parse --verify -q HEAD^ >/dev/null && git diff --quiet HEAD^ HEAD -- . ':(exclude)docs/CODEMAP.md'",
-  "rewrites": [
-    { "source": "/api/qq/:path*", "destination": "/api/qq?path=/:path*" }
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": [
+    {
+      "name": "frontend",
+      "source": "./frontend",
+      "public": true,
+      "rewrite": {
+        "source": "/(.*)",
+        "destination": "/$1"
+      }
+    },
+    {
+      "name": "backend",
+      "source": "./backend",
+      "public": false
+    }
+  ],
+  "bindings": [
+    {
+      "from": "frontend",
+      "to": "backend",
+      "variable": "API_BASE"
+    }
   ]
 }
