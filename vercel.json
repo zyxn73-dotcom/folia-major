@@ -1,26 +1,6 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "services": [
-    {
-      "name": "frontend",
-      "source": "./frontend",
-      "public": true,
-      "rewrite": {
-        "source": "/(.*)",
-        "destination": "/$1"
-      }
-    },
-    {
-      "name": "backend",
-      "source": "./backend",
-      "public": false
-    }
-  ],
-  "bindings": [
-    {
-      "from": "frontend",
-      "to": "backend",
-      "variable": "API_BASE"
-    }
+  "ignoreCommand": "git rev-parse --verify -q main",
+  "rewrites": [
+    { "source": "/api/qq/:path*", "destination": "https://api.qq.jsososo.com/:path*" }
   ]
 }
